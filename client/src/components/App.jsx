@@ -40,7 +40,7 @@ export default function App() {
       Page = <NewTacoPage {...commonProps} />;
       break;
     case "taco-finder":
-      Page = <TacoFinderPage />;
+      Page = <TacoFinderPage {...commonProps} />;
       break;
     case "donate":
       Page = <DonatePage {...commonProps} />;
@@ -56,7 +56,7 @@ export default function App() {
 
   return (
     <>
-      <div id="App">{Page}</div>;
+      <div id="App">{Page}</div>
     </>
   );
 }

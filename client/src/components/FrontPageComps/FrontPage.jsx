@@ -14,7 +14,7 @@ export default function FrontPage(props) {
   const { changePage } = props;
 
   return (
-    <div id="FrontPage">
+    <div id="front-page">
       <NewTacoButton {...commonProps} />
       <div
         id="logo"

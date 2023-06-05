@@ -24,8 +24,28 @@ export default function NewTacoPage({ changePage }) {
     }));
   };
 
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }, []);
+
+  const handleError = (error) => {
+    console.log("Geolocation error:", error);
+  };
+
+  const handleSuccess = (position) => {
+    // Access position.coords.latitude and position.coords.longitude here
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    console.log("Latitude:", latitude);
+    console.log("Longitude:", longitude);
+  };
+
   return (
-    <div id="NewTaco">
+    <div className="new-taco">
       <div className="input-block">
         <input
           placeholder="Name of the Spot"
