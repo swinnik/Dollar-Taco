@@ -1,0 +1,63 @@
+{
+  "name": "fec",
+  "version": "1.0.0",
+  "description": "Front-End Capstone project for Hack Reactor, rfp2303.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --env=jsdom --coverage --verbose --collectCoverageFrom=**/*.jsx",
+    "dev": "npx webpack --watch --mode development & npx nodemon --watch ./server ./server/index.js",
+    "build": "npx webpack --mode production",
+    "start": "node ./server/index.js",
+    "import-reviews-csv": "psql -d reviews -U seanwinnik -h localhost -p 5432 -f ./server/db/import_reviews_csv.sql "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Coffea-Exotica-Enticers/FEC.git"
+  },
+  "author": "group1",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Coffea-Exotica-Enticers/FEC/issues"
+  },
+  "homepage": "https://github.com/Coffea-Exotica-Enticers/FEC#readme",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "babel-plugin-macros": "^3.1.0",
+    "compression": "^1.7.4",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "file-loader": "^6.2.0",
+    "morgan": "^1.10.0",
+    "pg": "^8.11.0",
+    "postgres": "^3.3.4",
+    "postgres-date": "^2.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.62.1",
+    "sass-loader": "^13.2.2",
+    "underscore": "^1.13.6"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.21.5",
+    "@babel/preset-react": "^7.18.6",
+    "@testing-library/react": "^14.0.0",
+    "babel-jest": "^29.5.0",
+    "babel-loader": "^9.1.2",
+    "css-loader": "^6.7.3",
+    "eslint": "^8.39.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.2.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-testing-library": "^5.10.3",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "jest-mock-axios": "^4.7.2",
+    "nodemon": "^2.0.22",
+    "style-loader": "^3.3.2",
+    "webpack": "^5.82.0",
+    "webpack-cli": "^5.0.2"
+  }
+}
