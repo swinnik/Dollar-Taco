@@ -1,18 +1,20 @@
 import React from "react";
+import axios from "axios";
 
-const { useState } = React;
+const { useState, useEffect } = React;
 
 export default function NewTacoPage({ changePage }) {
-  const [tacoDetails, setTacoDetails] = useState({
-    name: "",
-    longitude: "",
-    latitude: "",
-    bestFlaver: "",
-  });
-
   const submitTaco = (e) => {
     console.log("UPDATE POSTGRES");
     console.log(tacoDetails);
+    axios
+      .post("/venders", { ...tacoDetails })
+      .then((response) =>
+        console.log("CLIENT ATTEMPTING POST *SUCCESS*", response)
+      )
+      .catch((error) => {
+        console.log("CLIENT ATTEMPTING POST *ERROR*", error);
+      });
     changePage(e);
   };
 
@@ -36,13 +38,27 @@ export default function NewTacoPage({ changePage }) {
     console.log("Geolocation error:", error);
   };
 
+  let latitude, longitude;
+
   const handleSuccess = (position) => {
     // Access position.coords.latitude and position.coords.longitude here
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    setTacoDetails({
+      name: "",
+      latitude: longitude,
+      longitude: latitude,
+      bestFlaver: "",
+    });
     console.log("Latitude:", latitude);
     console.log("Longitude:", longitude);
   };
+  const [tacoDetails, setTacoDetails] = useState({
+    name: "",
+    latitude: "",
+    longitude: "",
+    bestFlaver: "",
+  });
 
   return (
     <div className="new-taco">
