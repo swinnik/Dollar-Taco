@@ -10,6 +10,7 @@ export default function NewTacoPage({
   changePage,
   tacoDetails,
   setTacoDetails,
+  setClosestTacos,
 }) {
   const { latitude, longitude } = tacoDetails;
   const [bestFilling, setBestFilling] = useState("Best Filling");
@@ -34,6 +35,9 @@ export default function NewTacoPage({
       .catch((error) => {
         console.log("CLIENT ATTEMPTING POST *ERROR*", error.message);
       });
+    axios.get("/vendors").then((response) => {
+      setClosestTacos(Object.values(response.data).reverse());
+    });
     changePage(e);
   };
 

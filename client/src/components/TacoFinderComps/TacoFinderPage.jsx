@@ -10,10 +10,10 @@ export default function TacoFinder({
   const [closestTaco, setClosestTaco] = useState(taco);
 
   const notThisTaco = (e) => {
-    if (closestTacos.length <= 1) {
+    if (closestTacos.length === 2) {
       changePage(e);
       axios.get("/vendors").then((response) => {
-        setClosestTacos(Object.values(response.data));
+        setClosestTacos(Object.values(response.data).reverse());
       });
       return;
     }
