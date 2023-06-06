@@ -126,7 +126,7 @@ table {
 /* ======================= GLOBAL CSS BELOW======================== */
 * {
   font-family: "Noto Sans", sans-serif;
-  font-size: 16px;
+  font-size: 100%;
   color: #6c6869;
   --background: #9fc14f;
   --highlight: #a1d626;
@@ -169,9 +169,11 @@ root {
   right: 0;
 }
 
-.bottom-tag {
+.footer {
   position: fixed;
   bottom: 5px;
+  /* margin: auto; */
+  left: 50%;
 }
 
 .new-taco {
@@ -223,12 +225,17 @@ root {
   border-radius: 5px;
   /* box-shadow: 0 0 5px var(--text); */
   text-align: center;
-  font-size: 150%;
+  font-size: 175%;
   width: 75%;
-  padding: 20px 0 20px 0px;
+  padding: 40px 0 40px 0px;
   height: 30px;
   background-color: var(--text);
   color: var(--background);
+  cursor: pointer;
+}
+
+.big-button :hover {
+  box-shadow: 0 0 5px white;
 }
 
 .input-block {
@@ -293,4 +300,9 @@ input {
   padding-right: 20%;
   background-color: var(--background);
   box-shadow: 0 0 3px white;
+  cursor: pointer;
+}
+
+#donation-box {
+  font-size: xx-large;
 }

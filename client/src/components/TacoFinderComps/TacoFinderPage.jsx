@@ -8,7 +8,7 @@ export default function TacoFinder({ changePage }) {
         name="front-page"
         onClick={(e) => changePage(e)}
       >
-        Bring me back
+        Not This Taco
       </div>
       <div>
         taco information <br />
