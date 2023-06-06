@@ -6,11 +6,12 @@ export default function TacoFinder({
   changePage,
   closestTacos,
   setClosestTacos,
+  latLong,
 }) {
   const [sortedTacos, setSortedTacos] = useState([]);
   const [closestTaco, setClosestTaco] = useState(null);
-  let latitude = 1;
-  let longitude = 1;
+  console.log(latLong);
+  let { latitude, longitude } = latLong;
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -29,17 +30,18 @@ export default function TacoFinder({
     longitude = position.coords.longitude;
     console.log("success", latitude, longitude);
 
-    const sortedTacos = closestTacos.sort(
+    let sortedTacos = closestTacos.sort(
       (a, b) =>
-        calculateDistance(b, latitude, longitude) -
-        calculateDistance(a, latitude, longitude)
+        calculateDistance(a, latitude, longitude) -
+        calculateDistance(b, latitude, longitude)
     );
+    sortedTacos = sortedTacos.slice(0, 5);
     setSortedTacos(sortedTacos);
     setClosestTaco(sortedTacos[0]);
   };
 
   const notThisTaco = (e) => {
-    if (sortedTacos.length === 1) {
+    if (sortedTacos.length <= 1) {
       changePage(e);
       axios.get("/vendors").then((response) => {
         setClosestTacos(Object.values(response.data).reverse());
@@ -52,21 +54,35 @@ export default function TacoFinder({
     console.log("asdfadfasdf", sortedTacos);
     setClosestTaco(sortedTacos[0]);
   };
+
+  const openGoogleMapsDirections = () => {
+    if (closestTaco) {
+      const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${closestTaco.latitude},${closestTaco.longitude}`;
+      window.open(mapsUrl, "_blank");
+    }
+  };
   return (
     <div className="new-taco">
       <div className="big-button" name="front-page" onClick={notThisTaco}>
         Not This Taco
       </div>
-      {closestTaco && (
+      {closestTaco ? (
         <div>
-          {closestTaco.name} is pretty close by...
+          {closestTaco.name} is only about{" "}
+          {Math.round(calculateDistance(closestTaco, latitude, longitude), 2)}{" "}
+          miles away!
           <br />
           Make sure to check out their {closestTaco.bestfilling}!!!
           <br />
           lat: {closestTaco.latitude} long: {closestTaco.longitude}
         </div>
+      ) : (
+        <div>Finding Closest Taco...</div>
       )}
-      <div className="big-button"> Take Me To My Taco! </div>
+      <div className="big-button" onClick={openGoogleMapsDirections}>
+        {" "}
+        Take Me To My Taco!{" "}
+      </div>
     </div>
   );
 }

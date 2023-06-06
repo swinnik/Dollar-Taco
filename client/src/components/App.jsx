@@ -12,6 +12,7 @@ import DonatePage from "./DonateComps/DonatePage.jsx";
 // note: if App parent re-renders child components will render too
 export default function App() {
   const [pageID, setPageID] = useState("front-page");
+  const [latLong, setLatLong] = useState({ latitude: "", longitude: "" });
   const [tacoDetails, setTacoDetails] = useState({
     name: "",
     latitude: "",
@@ -44,6 +45,12 @@ export default function App() {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
     console.log("success", latitude, longitude);
+    setLatLong((prevLatLong) => ({
+      ...prevLatLong,
+      latitude: latitude,
+      longitude: longitude,
+    }));
+    console.log(latLong);
     setTacoDetails((tacoDetails) => ({
       ...tacoDetails,
       latitude: latitude,
@@ -52,6 +59,7 @@ export default function App() {
   };
 
   const commonProps = {
+    latLong,
     pageID,
     setPageID,
     changePage,
