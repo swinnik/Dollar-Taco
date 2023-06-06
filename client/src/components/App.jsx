@@ -95,7 +95,10 @@ export default function App() {
   return (
     <>
       <div id="App">{Page}</div>
-      <div className="bottom-tag">Built by Swinnik</div>
+      <div className="footer">
+        Built by{" "}
+        <a href="https://github.com/swinnik?tab=repositories"> Swinnik</a>
+      </div>
     </>
   );
 }

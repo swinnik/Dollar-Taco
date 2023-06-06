@@ -26,13 +26,13 @@ export default function BestFilling({
     <>
       <div id="modal-background" onClick={showModal} />
       <div id="fillings">
-        {/* <div
+        <div
           className="filling"
-          value="Best Taco Flavor"
+          value="Carne Asada"
           onClick={(e) => clickFilling(e)}
         >
-          Best Taco Filling
-        </div> */}
+          Carne Asada
+        </div>
         <div
           className="filling"
           value="Carnitas"
