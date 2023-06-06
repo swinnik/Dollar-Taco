@@ -49,8 +49,6 @@ export default function App() {
       latitude: latitude,
       longitude: longitude,
     }));
-    console.log("Latitude:", latitude);
-    console.log("Longitude:", longitude);
   };
 
   const commonProps = {

@@ -35,10 +35,14 @@ export default function NewTacoPage({
       .catch((error) => {
         console.log("CLIENT ATTEMPTING POST *ERROR*", error.message);
       });
-    axios.get("/vendors").then((response) => {
-      setClosestTacos(Object.values(response.data).reverse());
-    });
-    changePage(e);
+    axios
+      .get("/vendors")
+      .then((response) => {
+        setClosestTacos(Object.values(response.data).reverse());
+      })
+      .then(() => {
+        changePage(e);
+      });
   };
 
   const clickFilling = (e) => {
@@ -67,15 +71,15 @@ export default function NewTacoPage({
           onChange={(e) => clickFilling(e)}
         />
         <input
-          //   placeholder="longitude"
-          name="longitude"
-          value={longitude}
-          onChange={(e) => clickFilling(e)}
-        />
-        <input
           //   placeholder="latitude"
           name="latitude"
           value={latitude}
+          onChange={(e) => clickFilling(e)}
+        />
+        <input
+          //   placeholder="longitude"
+          name="longitude"
+          value={longitude}
           onChange={(e) => clickFilling(e)}
         />
         <input
