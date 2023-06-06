@@ -262,22 +262,31 @@ input {
   box-shadow: inset 0 0 2px black;
 }
 
-select {
-  width: 80%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  position: relative;
+#modal-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.536);
 }
 
-/* Example styling for option list */
-select option {
-  background-color: #f9f9f9;
-  color: #333;
+#fillings {
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  bottom: 15%;
+  right: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* background-color: rgba(0, 0, 0, 0.536); */
 }
 
-/* Example styling for selected option */
-select option:checked {
-  background-color: #ddd;
-  color: #555;
+.filling {
+  margin-top: 3px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: solid;
+  background-color: var(--background);
 }

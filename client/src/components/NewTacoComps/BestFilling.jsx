@@ -1,16 +1,53 @@
 import React from "react";
 
 export default function BestFilling({ bestFilling }) {
+  const fillings = (
+    <>
+      <div id="modal-background" />
+      <div id="fillings">
+        <div className="filling" value="Best Taco Flavor">
+          Best Taco Filling
+        </div>
+        <div className="filling" value="Carnitas">
+          Carnitas
+        </div>
+        <div className="filling" value="Carne Asada">
+          Carnitas
+        </div>
+        <div className="filling" value="Al Pastor">
+          Al Pastor
+        </div>
+        <div className="filling" value="Chorizo">
+          Chorizo
+        </div>
+        <div className="filling" value="Chicken">
+          Chicken
+        </div>
+        <div className="filling" value="Suadero">
+          Suadero
+        </div>
+      </div>
+    </>
+  );
+
+  let displayModal = false;
+  let modal = <></>;
+  if (displayModal) {
+    modal = fillings;
+  }
+
+  const showModal = (e) => {};
+
   return (
-    <div className="like-input" onChange={(e) => selectFilling(e)}>
-      {bestFilling}
-      <div value="Best Taco Flavor">Best Taco Filling</div>
-      <div value="Carnitas">Carnitas</div>
-      <div value="Carne Asada">Carnitas</div>
-      <div value="Al Pastor">Al Pastor</div>
-      <div value="Chorizo">Chorizo</div>
-      <div value="Chicken">Chicken</div>
-      <div value="Suadero">Suadero</div>
-    </div>
+    <>
+      <div
+        className="like-input"
+        onClick={showModal}
+        onChange={(e) => selectFilling(e)}
+      >
+        Best Filling
+      </div>
+      {modal}
+    </>
   );
 }
