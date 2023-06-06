@@ -98,6 +98,7 @@ export default function NewTacoPage({ changePage }) {
           name="Best Filing"
           value={bestFilling}
           onChange={(e) => handleInputChange(e)}
+          onClick={() => setDisplayModal(true)}
         />
       </div>
       <BestFilling {...fillingProps} />

@@ -77,16 +77,5 @@ export default function BestFilling({
     modal = fillings;
   }
 
-  return (
-    <>
-      <div
-        className="like-input"
-        onClick={showModal}
-        onChange={(e) => selectFilling(e)}
-      >
-        Best Filling
-      </div>
-      {modal}
-    </>
-  );
+  return <>{modal}</>;
 }
