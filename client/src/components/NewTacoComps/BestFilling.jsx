@@ -1,8 +1,9 @@
 import React from "react";
 
-export default function BestFilling() {
+export default function BestFilling({ bestFilling }) {
   return (
-    <div onChange={(e) => selectFilling(e)}>
+    <div className="like-input" onChange={(e) => selectFilling(e)}>
+      {bestFilling}
       <div value="Best Taco Flavor">Best Taco Filling</div>
       <div value="Carnitas">Carnitas</div>
       <div value="Carne Asada">Carnitas</div>

@@ -57,6 +57,7 @@ export default function App() {
   return (
     <>
       <div id="App">{Page}</div>
+      <div className="bottom-tag">Built by Swinnik</div>
     </>
   );
 }

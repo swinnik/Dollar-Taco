@@ -5,6 +5,8 @@ import BestFilling from "./BestFilling";
 const { useState, useEffect } = React;
 
 export default function NewTacoPage({ changePage }) {
+  const [bestFilling, setBestFilling] = useState("Best Filling");
+
   const submitTaco = (e) => {
     console.log("UPDATE POSTGRES");
     console.log(tacoDetails);
@@ -46,10 +48,10 @@ export default function NewTacoPage({ changePage }) {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
     setTacoDetails({
-      name: "",
+      name: tacoDetails.name,
       latitude: longitude,
       longitude: latitude,
-      bestFlaver: "",
+      bestFilling: "",
     });
     console.log("Latitude:", latitude);
     console.log("Longitude:", longitude);
@@ -58,12 +60,8 @@ export default function NewTacoPage({ changePage }) {
     name: "",
     latitude: "",
     longitude: "",
-    bestFlaver: "",
+    bestFilling: "",
   });
-
-  const selectFilling = (e) => {
-    console.log(e.target.value);
-  };
 
   return (
     <div className="new-taco">
@@ -87,7 +85,7 @@ export default function NewTacoPage({ changePage }) {
           onChange={(e) => handleInputChange(e)}
         />
       </div>
-      <BestFilling />
+      <BestFilling bestFilling={bestFilling} />
       <div
         className="big-button"
         name="front-page"
