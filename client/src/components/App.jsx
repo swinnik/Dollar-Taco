@@ -18,12 +18,17 @@ export default function App() {
     longitude: "",
     bestFilling: "",
   });
+  const [closestTaco, setClosestTaco] = useState([]);
 
   const changePage = (e) => {
     setPageID(e.target.getAttribute("name"));
     console.log(e.target.getAttribute("name"));
   };
   useEffect(() => {
+    axios.get("/vendors").then((response) => {
+      console.log("DB RESPONSE>>>", Object.values(response.data));
+      setClosestTaco(Object.entries(response.data)[0]);
+    });
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
     } else {
@@ -55,6 +60,8 @@ export default function App() {
     changePage,
     tacoDetails,
     setTacoDetails,
+    closestTaco,
+    setClosestTaco,
   };
 
   let Page = <FrontPage {...commonProps} />;

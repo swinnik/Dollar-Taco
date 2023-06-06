@@ -16,18 +16,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(compression());
 
-// Routes
-// app.use("/products", router.products);
-// app.use("/qa", router.qa);
 app.use(
   "/vendors",
   (req, res, next) => {
-    console.log("SERVER receiving request to /vendors");
+    console.log("SERVER receiving request to /vendors", req.data);
     next();
   },
   vendors
-); // app.use('/cart', router.cart);
-
+);
 // Serving static files
 app.use(express.static(path.join(__dirname, "../client/dist")));
 

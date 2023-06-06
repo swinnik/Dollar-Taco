@@ -29,10 +29,6 @@ module.exports = {
         })
         .then(() => console.log("Data saved successfully:", result))
         .then(() => res.sendStatus(200));
-      // .then(() => {
-      //   return longitude;
-      // });
-      // res.sendStatus(200);
     } catch (error) {
       console.error("Error in POST controller:", error);
       res.sendStatus(500);
