@@ -287,6 +287,10 @@ input {
   margin-top: 3px;
   padding-top: 15px;
   padding-bottom: 15px;
-  border: solid;
+  border: solid white;
+  border-radius: 5px;
+  padding-left: 20%;
+  padding-right: 20%;
   background-color: var(--background);
+  box-shadow: 0 0 3px white;
 }

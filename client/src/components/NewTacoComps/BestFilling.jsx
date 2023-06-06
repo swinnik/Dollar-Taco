@@ -1,9 +1,16 @@
 import React from "react";
 
-export default function BestFilling({ bestFilling }) {
+export default function BestFilling({
+  bestFilling,
+  displayModal,
+  setDisplayModal,
+}) {
+  const showModal = () => {
+    setDisplayModal(!displayModal);
+  };
   const fillings = (
     <>
-      <div id="modal-background" />
+      <div id="modal-background" onClick={showModal} />
       <div id="fillings">
         <div className="filling" value="Best Taco Flavor">
           Best Taco Filling
@@ -30,13 +37,10 @@ export default function BestFilling({ bestFilling }) {
     </>
   );
 
-  let displayModal = false;
   let modal = <></>;
   if (displayModal) {
     modal = fillings;
   }
-
-  const showModal = (e) => {};
 
   return (
     <>

@@ -6,6 +6,7 @@ const { useState, useEffect } = React;
 
 export default function NewTacoPage({ changePage }) {
   const [bestFilling, setBestFilling] = useState("Best Filling");
+  const [displayModal, setDisplayModal] = useState(false);
 
   const submitTaco = (e) => {
     console.log("UPDATE POSTGRES");
@@ -85,7 +86,11 @@ export default function NewTacoPage({ changePage }) {
           onChange={(e) => handleInputChange(e)}
         />
       </div>
-      <BestFilling bestFilling={bestFilling} />
+      <BestFilling
+        bestFilling={bestFilling}
+        setDisplayModal={setDisplayModal}
+        displayModal={displayModal}
+      />
       <div
         className="big-button"
         name="front-page"
