@@ -4,7 +4,7 @@ const calculateDistance = (obj, latitude, longitude) => {
   const myLat = latitude;
   const myLong = longitude;
 
-  const earthRadius = 6371; // Radius of the Earth in kilometers
+  const earthRadius = 3958.8; //miles
 
   const dLat = toRadians(myLat - vendorLat);
   const dLon = toRadians(myLong - vendoLong);

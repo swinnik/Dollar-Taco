@@ -9,8 +9,8 @@ export default function TacoFinder({
 }) {
   const [sortedTacos, setSortedTacos] = useState([]);
   const [closestTaco, setClosestTaco] = useState(null);
-  let latitude = 1;
-  let longitude = 1;
+  let latitude = 34.1774627;
+  let longitude = -118.37719;
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -31,8 +31,8 @@ export default function TacoFinder({
 
     const sortedTacos = closestTacos.sort(
       (a, b) =>
-        calculateDistance(b, latitude, longitude) -
-        calculateDistance(a, latitude, longitude)
+        calculateDistance(a, latitude, longitude) -
+        calculateDistance(b, latitude, longitude)
     );
     setSortedTacos(sortedTacos);
     setClosestTaco(sortedTacos[0]);
@@ -52,21 +52,35 @@ export default function TacoFinder({
     console.log("asdfadfasdf", sortedTacos);
     setClosestTaco(sortedTacos[0]);
   };
+
+  const openGoogleMapsDirections = () => {
+    if (closestTaco) {
+      const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${closestTaco.latitude},${closestTaco.longitude}`;
+      window.open(mapsUrl, "_blank");
+    }
+  };
   return (
     <div className="new-taco">
       <div className="big-button" name="front-page" onClick={notThisTaco}>
         Not This Taco
       </div>
-      {closestTaco && (
+      {closestTaco ? (
         <div>
-          {closestTaco.name} is pretty close by...
+          {closestTaco.name} is only about{" "}
+          {Math.round(calculateDistance(closestTaco, latitude, longitude), 2)}{" "}
+          miles away!
           <br />
           Make sure to check out their {closestTaco.bestfilling}!!!
           <br />
           lat: {closestTaco.latitude} long: {closestTaco.longitude}
         </div>
+      ) : (
+        <div>Finding Closest Taco...</div>
       )}
-      <div className="big-button"> Take Me To My Taco! </div>
+      <div className="big-button" onClick={openGoogleMapsDirections}>
+        {" "}
+        Take Me To My Taco!{" "}
+      </div>
     </div>
   );
 }
