@@ -4,7 +4,13 @@ import BestFilling from "./BestFilling";
 
 const { useState, useEffect } = React;
 
-export default function NewTacoPage({ changePage }) {
+export default function NewTacoPage({
+  changePage,
+  latitude,
+  longitude,
+  tacoDetails,
+  setTacoDetails,
+}) {
   const [bestFilling, setBestFilling] = useState("Best Filling");
   const [displayModal, setDisplayModal] = useState(false);
 
@@ -22,7 +28,7 @@ export default function NewTacoPage({ changePage }) {
     changePage(e);
   };
 
-  const handleInputChange = (e) => {
+  const clickFilling = (e) => {
     const { name, value } = e.target;
     setTacoDetails((prevDetails) => ({
       ...prevDetails,
@@ -30,39 +36,33 @@ export default function NewTacoPage({ changePage }) {
     }));
   };
 
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
-  }, []);
+  //   useEffect(() => {
+  //     if (navigator.geolocation) {
+  //       navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
+  //     } else {
+  //       console.log("Geolocation is not supported by this browser.");
+  //     }
+  //   }, []);
 
-  const handleError = (error) => {
-    console.log("Geolocation error:", error);
-  };
+  //   const handleError = (error) => {
+  //     console.log("Geolocation error:", error);
+  //   };
 
-  let latitude, longitude;
+  //   let latitude, longitude;
 
-  const handleSuccess = (position) => {
-    // Access position.coords.latitude and position.coords.longitude here
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
-    setTacoDetails({
-      name: tacoDetails.name,
-      latitude: longitude,
-      longitude: latitude,
-      bestFilling: "",
-    });
-    console.log("Latitude:", latitude);
-    console.log("Longitude:", longitude);
-  };
-  const [tacoDetails, setTacoDetails] = useState({
-    name: "",
-    latitude: "",
-    longitude: "",
-    bestFilling: "",
-  });
+  //   const handleSuccess = (position) => {
+  //     // Access position.coords.latitude and position.coords.longitude here
+  //     latitude = position.coords.latitude;
+  //     longitude = position.coords.longitude;
+  //     setTacoDetails({
+  //       name: tacoDetails.name,
+  //       latitude: longitude,
+  //       longitude: latitude,
+  //       bestFilling: "",
+  //     });
+  //     console.log("Latitude:", latitude);
+  //     console.log("Longitude:", longitude);
+  //   };
 
   const fillingProps = {
     setBestFilling,
@@ -79,25 +79,25 @@ export default function NewTacoPage({ changePage }) {
           placeholder="Name of the Spot"
           name="name"
           value={tacoDetails.name}
-          onChange={(e) => handleInputChange(e)}
+          onChange={(e) => clickFilling(e)}
         />
         <input
           placeholder="longitude"
           name="longitude"
-          value={tacoDetails.longitude}
-          onChange={(e) => handleInputChange(e)}
+          value={longitude}
+          onChange={(e) => clickFilling(e)}
         />
         <input
           placeholder="latitude"
           name="latitude"
-          value={tacoDetails.latitude}
-          onChange={(e) => handleInputChange(e)}
+          value={latitude}
+          onChange={(e) => clickFilling(e)}
         />
         <input
           placeholder="Best Filling"
           name="Best Filing"
           value={bestFilling}
-          onChange={(e) => handleInputChange(e)}
+          onChange={(e) => clickFilling(e)}
           onClick={() => setDisplayModal(true)}
         />
       </div>

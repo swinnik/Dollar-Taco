@@ -11,17 +11,55 @@ import DonatePage from "./DonateComps/DonatePage.jsx";
 
 // note: if App parent re-renders child components will render too
 export default function App() {
-  const [pageID, setPageID] = useState("new-spot");
+  const [pageID, setPageID] = useState("front-page");
 
   const changePage = (e) => {
     setPageID(e.target.getAttribute("name"));
     console.log(e.target.getAttribute("name"));
   };
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }, []);
+
+  const handleError = (error) => {
+    console.log("Geolocation error:", error);
+  };
+
+  let latitude, longitude;
+
+  const handleSuccess = (position) => {
+    // Access position.coords.latitude and position.coords.longitude here
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    setTacoDetails({
+      name: tacoDetails.name,
+      latitude: longitude,
+      longitude: latitude,
+      bestFilling: "",
+    });
+    console.log("Latitude:", latitude);
+    console.log("Longitude:", longitude);
+  };
+
+  const [tacoDetails, setTacoDetails] = useState({
+    name: "",
+    latitude: latitude,
+    longitude: longitude,
+    bestFilling: "",
+  });
 
   let commonProps = {
     pageID,
     setPageID,
     changePage,
+    latitude,
+    longitude,
+    tacoDetails,
+    setTacoDetails,
   };
 
   let Page = <FrontPage {...commonProps} />;
