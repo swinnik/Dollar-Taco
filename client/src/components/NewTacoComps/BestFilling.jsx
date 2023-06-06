@@ -16,7 +16,7 @@ export default function BestFilling({
     let fillingName = e.target.getAttribute("value");
     setTacoDetails((prevState) => ({
       ...prevState,
-      BestFilling: fillingName,
+      bestFilling: fillingName,
     }));
     setBestFilling(fillingName);
     showModal();
