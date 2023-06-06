@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from "react";
 import axios from "axios";
 import BestFilling from "./BestFilling";
@@ -6,11 +8,11 @@ const { useState, useEffect } = React;
 
 export default function NewTacoPage({
   changePage,
-  latitude,
-  longitude,
   tacoDetails,
   setTacoDetails,
+  setClosestTacos,
 }) {
+  const { latitude, longitude } = tacoDetails;
   const [bestFilling, setBestFilling] = useState("Best Filling");
   const [displayModal, setDisplayModal] = useState(false);
 
@@ -18,13 +20,24 @@ export default function NewTacoPage({
     console.log("UPDATE POSTGRES");
     console.log(tacoDetails);
     axios
-      .post("/venders", { ...tacoDetails })
-      .then((response) =>
-        console.log("CLIENT ATTEMPTING POST *SUCCESS*", response)
+      .post(
+        "/vendors",
+        { ...tacoDetails },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       )
+      .then((response) => {
+        console.log("CLIENT ATTEMPTING POST *SUCCESS*", response.data);
+      })
       .catch((error) => {
-        console.log("CLIENT ATTEMPTING POST *ERROR*", error);
+        console.log("CLIENT ATTEMPTING POST *ERROR*", error.message);
       });
+    axios.get("/vendors").then((response) => {
+      setClosestTacos(Object.values(response.data).reverse());
+    });
     changePage(e);
   };
 
@@ -35,34 +48,6 @@ export default function NewTacoPage({
       [name]: value,
     }));
   };
-
-  //   useEffect(() => {
-  //     if (navigator.geolocation) {
-  //       navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
-  //     } else {
-  //       console.log("Geolocation is not supported by this browser.");
-  //     }
-  //   }, []);
-
-  //   const handleError = (error) => {
-  //     console.log("Geolocation error:", error);
-  //   };
-
-  //   let latitude, longitude;
-
-  //   const handleSuccess = (position) => {
-  //     // Access position.coords.latitude and position.coords.longitude here
-  //     latitude = position.coords.latitude;
-  //     longitude = position.coords.longitude;
-  //     setTacoDetails({
-  //       name: tacoDetails.name,
-  //       latitude: longitude,
-  //       longitude: latitude,
-  //       bestFilling: "",
-  //     });
-  //     console.log("Latitude:", latitude);
-  //     console.log("Longitude:", longitude);
-  //   };
 
   const fillingProps = {
     setBestFilling,
@@ -82,13 +67,13 @@ export default function NewTacoPage({
           onChange={(e) => clickFilling(e)}
         />
         <input
-          placeholder="longitude"
+          //   placeholder="longitude"
           name="longitude"
           value={longitude}
           onChange={(e) => clickFilling(e)}
         />
         <input
-          placeholder="latitude"
+          //   placeholder="latitude"
           name="latitude"
           value={latitude}
           onChange={(e) => clickFilling(e)}
