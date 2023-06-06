@@ -3,9 +3,9 @@ CREATE DATABASE dollartaco;
 \c dollartaco;
 
 
-CREATE TABLE venders (
+CREATE TABLE vendors (
   name VARCHAR(100),
-  latitude INTEGER,
-  longitude INTEGER,
+  latitude NUMERIC,
+  longitude NUMERIC,
   bestFilling VARCHAR(100)
 );

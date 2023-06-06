@@ -14,19 +14,19 @@ module.exports = {
     }
   },
 
-  createVender: async ({ name, latitude, longitude, bestFilling }) => {
+  createVendor: async ({ name, latitude, longitude, bestFilling }) => {
     try {
       console.log("QUWERY VALUES", name, latitude, longitude, bestFilling);
 
       const query = `
         INSERT INTO vendors (name, latitude, longitude, bestFilling)
-        VALUES (${name}, ${latitude}, ${longitude}, ${bestFilling})
+        VALUES ($1, $2, $3, $4)
       `;
-      // const values = [name, latitude, longitude, bestFilling];
-      await pool.query(query);
-      console.log("Vender added successfully");
+      const values = [name, latitude, longitude, bestFilling];
+      await pool.query(query, values);
+      console.log("Vendor added successfully");
     } catch (error) {
-      console.error("Error adding vender:", error);
+      console.error("Error adding vendor:", error);
       throw error;
     }
   },

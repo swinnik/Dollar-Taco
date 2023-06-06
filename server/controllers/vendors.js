@@ -16,23 +16,23 @@ module.exports = {
   post: (req, res) => {
     try {
       console.log("Inside the POST controller"); // Add console.log statement
-      const { name, longitude, latitude, bestFlaver } = req.body;
+      const { name, longitude, latitude, bestFilling } = req.body;
 
       // Perform necessary operations, such as saving the data to the database
       const result = models.vendors;
       models.vendors
-        .createVender({
+        .createVendor({
           name,
           longitude,
           latitude,
-          bestFlaver,
+          bestFilling,
         })
         .then(() => console.log("Data saved successfully:", result))
-        .then(() => res.send(200))
-        .then(() => {
-          return longitude;
-        });
-      res.sendStatus(200);
+        .then(() => res.sendStatus(200));
+      // .then(() => {
+      //   return longitude;
+      // });
+      // res.sendStatus(200);
     } catch (error) {
       console.error("Error in POST controller:", error);
       res.sendStatus(500);
