@@ -22,7 +22,7 @@ export default function FrontPage(props) {
         name="donate"
         onClick={(e) => changePage(e)}
       >
-        One Dollar Taco
+        Two Dollar Taco
       </div>
       <ImHungryButton {...commonProps} />
     </div>

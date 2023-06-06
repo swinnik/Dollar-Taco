@@ -18,7 +18,7 @@ export default function App() {
     longitude: "",
     bestFilling: "",
   });
-  const [closestTaco, setClosestTaco] = useState([]);
+  const [closestTacos, setClosestTacos] = useState([]);
 
   const changePage = (e) => {
     setPageID(e.target.getAttribute("name"));
@@ -26,8 +26,7 @@ export default function App() {
   };
   useEffect(() => {
     axios.get("/vendors").then((response) => {
-      console.log("DB RESPONSE>>>", Object.values(response.data));
-      setClosestTaco(Object.entries(response.data)[0]);
+      setClosestTacos(Object.values(response.data));
     });
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
@@ -60,8 +59,8 @@ export default function App() {
     changePage,
     tacoDetails,
     setTacoDetails,
-    closestTaco,
-    setClosestTaco,
+    closestTacos,
+    setClosestTacos,
   };
 
   let Page = <FrontPage {...commonProps} />;
