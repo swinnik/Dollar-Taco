@@ -16,7 +16,7 @@ module.exports = {
   post: (req, res) => {
     try {
       console.log("Inside the POST controller"); // Add console.log statement
-      const { name, longitude, latitude, bestFilling } = req.body;
+      const { name, longitude, latitude, bestFilling, price } = req.body;
 
       // Perform necessary operations, such as saving the data to the database
       const result = models.vendors;
@@ -26,6 +26,7 @@ module.exports = {
           longitude,
           latitude,
           bestFilling,
+          price,
         })
         .then(() => console.log("Data saved successfully:", result))
         .then(() => res.sendStatus(200));

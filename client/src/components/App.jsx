@@ -18,6 +18,7 @@ export default function App() {
     latitude: "",
     longitude: "",
     bestFilling: "",
+    price: "",
   });
   const [closestTacos, setClosestTacos] = useState([]);
 
