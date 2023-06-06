@@ -15,8 +15,8 @@ app.use(express.json());
 app.use(compression());
 
 // Routes
-// app.use('/products', router.products);
-// app.use('/qa', router.qa);
+app.use("/products", router.products);
+app.use("/qa", router.qa);
 app.use("/venders", router.venders);
 // app.use('/cart', router.cart);
 

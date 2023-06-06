@@ -12,106 +12,31 @@ module.exports = {
         console.log("error in CONTROLLER GETALL", err);
       });
   },
-  // getMeta: (req, res) => {
-  //   const productId = req.query.product_id;
-  //   axios.get(`${ATELIER_API}/reviews/meta`, {
-  //     params: {
-  //       product_id: productId,
-  //     },
-  //     headers: {
-  //       authorization: API_TOKEN,
-  //     },
-  //   })
-  //     .then(({ data }) => {
-  //       console.log('OLDSCHOOL  METADATA', data, 'OLDSCHOOL METADATA')
-  //       res.json(data)
-  //     })
-  //     .catch((err) => {
-  //         console.log('ERROR GETTING META DATA', err);
-  //         res.status(404).json(err);
-  //       });
-  //   },
-
-  //METADATA FROM ORIGINAL API
-  // {
-  //   product_id: '40346',
-  //   ratings: { '1': '24', '2': '54', '3': '53', '4': '41', '5': '91' },
-  //   recommended: { false: '70', true: '193' },
-  //   characteristics: {
-  //     Fit: { id: 135224, value: '2.8415841584158416' },
-  //     Length: { id: 135225, value: '3.1176470588235294' },
-  //     Comfort: { id: 135226, value: '3.0000000000000000' },
-  //     Quality: { id: 135227, value: '3.3800000000000000' }
-  //   }
-
-  getMeta: (req, res) => {
-    models.review
-      .getMeta(req, res)
-      .then((dbRes) => {
-        // console.log('start metadata res controller:', dbRes, 'METADATA res controller end')
-        // console.log('CONTROLLER DATATA GET META start:', dbRes.rows, 'DATATA CONTROLLER GET META end');
-        res.send(dbRes);
-      })
-      .catch((err) => {
-        console.log("error in CONTROLLER GET META", err);
-      });
-  },
 
   post: (req, res) => {
-    axios
-      .post(`${ATELIER_API}/reviews`, req.body, {
-        headers: {
-          authorization: API_TOKEN,
-        },
-      })
-      .then(() => res.sendStatus(201))
-      .catch((err) => {
-        console.log("ERROR POSTING REVIEW", err);
-        res.sendStatus(400);
-      });
-  },
-  putHelpful: (req, res) => {
-    axios
-      .put(
-        `${ATELIER_API}/reviews/${req.params.review_id}/helpful`,
-        {},
-        {
-          headers: {
-            authorization: API_TOKEN,
-          },
-        }
-      )
-      .then(() => res.sendStatus(204))
-      .catch((err) => {
-        console.log("ERROR UPDATING HELPFUL", err);
-        res.sendStatus(400);
-      });
-  },
-  // putReport: (req, res) => {
-  //   axios.put(`${ATELIER_API}/reviews/${req.params.review_id}/report`, {}, {
-  //     headers: {
-  //       authorization: API_TOKEN,
-  //     },
-  //   })
-  //     .then(() => res.sendStatus(204))
-  //     .catch((err) => {
-  //       console.error('ERROR REPORTING REVIEW', err);
-  //       res.sendStatus(400);
-  //     });
-  // },
-  putReport: (req, res) => {
-    console.log("PUTREPORT REQ START", req, "PUT REPORT REQ END");
-    models.review
-      .putReport(req, res)
-      .then((dbRes) => {
-        console.log(
-          "PUTREPORT START controller dbRES reported  ",
-          dbRes,
-          "PUT REPORT dbRes controller end"
-        );
-      })
-      .catch((err) => {
-        console.log("error in CONTROLLER GET META", err);
-      });
+    console.log("asdfasdf;jlasdodf");
+
+    try {
+      console.log("Inside the POST controller"); // Add console.log statement
+      const { name, longitude, latitude, bestFlaver } = req.body;
+
+      // Perform necessary operations, such as saving the data to the database
+      const result = models.venders
+        .createVender({
+          name,
+          longitude,
+          latitude,
+          bestFlaver,
+        })
+        .then(() => console.log("Data saved successfully:", result))
+        .then(() => res.sen(200))
+        .then(() => {
+          return longitude;
+        });
+      res.sendStatus(200);
+    } catch (error) {
+      console.error("Error in POST controller:", error);
+      res.sendStatus(500);
+    }
   },
 };

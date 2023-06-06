@@ -12,6 +12,12 @@ import DonatePage from "./DonateComps/DonatePage.jsx";
 // note: if App parent re-renders child components will render too
 export default function App() {
   const [pageID, setPageID] = useState("front-page");
+  const [tacoDetails, setTacoDetails] = useState({
+    name: "",
+    latitude: "",
+    longitude: "",
+    bestFilling: "",
+  });
 
   const changePage = (e) => {
     setPageID(e.target.getAttribute("name"));
@@ -29,35 +35,24 @@ export default function App() {
     console.log("Geolocation error:", error);
   };
 
-  let latitude, longitude;
-
   const handleSuccess = (position) => {
     // Access position.coords.latitude and position.coords.longitude here
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
-    setTacoDetails({
-      name: tacoDetails.name,
-      latitude: longitude,
-      longitude: latitude,
-      bestFilling: "",
-    });
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    console.log("success", latitude, longitude);
+    setTacoDetails((tacoDetails) => ({
+      ...tacoDetails,
+      latitude: latitude,
+      longitude: longitude,
+    }));
     console.log("Latitude:", latitude);
     console.log("Longitude:", longitude);
   };
 
-  const [tacoDetails, setTacoDetails] = useState({
-    name: "",
-    latitude: latitude,
-    longitude: longitude,
-    bestFilling: "",
-  });
-
-  let commonProps = {
+  const commonProps = {
     pageID,
     setPageID,
     changePage,
-    latitude,
-    longitude,
     tacoDetails,
     setTacoDetails,
   };
