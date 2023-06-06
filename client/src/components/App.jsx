@@ -11,7 +11,7 @@ import DonatePage from "./DonateComps/DonatePage.jsx";
 
 // note: if App parent re-renders child components will render too
 export default function App() {
-  const [pageID, setPageID] = useState("front-page");
+  const [pageID, setPageID] = useState("new-spot");
 
   const changePage = (e) => {
     setPageID(e.target.getAttribute("name"));

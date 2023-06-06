@@ -64,6 +64,14 @@ export default function NewTacoPage({ changePage }) {
     bestFilling: "",
   });
 
+  const fillingProps = {
+    setBestFilling,
+    setDisplayModal,
+    displayModal,
+    tacoDetails,
+    setTacoDetails,
+  };
+
   return (
     <div className="new-taco">
       <div className="input-block">
@@ -85,12 +93,14 @@ export default function NewTacoPage({ changePage }) {
           value={tacoDetails.latitude}
           onChange={(e) => handleInputChange(e)}
         />
+        <input
+          placeholder="Best Filling"
+          name="Best Filing"
+          value={bestFilling}
+          onChange={(e) => handleInputChange(e)}
+        />
       </div>
-      <BestFilling
-        bestFilling={bestFilling}
-        setDisplayModal={setDisplayModal}
-        displayModal={displayModal}
-      />
+      <BestFilling {...fillingProps} />
       <div
         className="big-button"
         name="front-page"
