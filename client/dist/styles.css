@@ -214,14 +214,16 @@ root {
 }
 
 .big-button {
-  border: 2px solid var(--text);
+  /* border: 2px solid var(--text); */
   border-radius: 5px;
-  box-shadow: 0 0 5px var(--text);
+  /* box-shadow: 0 0 5px var(--text); */
   text-align: center;
+  font-size: 150%;
   width: 75%;
   padding: 20px 0 20px 0px;
   height: 30px;
-  background-color: var(--highlight);
+  background-color: var(--text);
+  color: var(--background);
 }
 
 .input-block {
@@ -239,4 +241,11 @@ input {
   padding-top: 5px;
   margin-top: 5px;
   /* background-color: blue; */
+}
+
+option {
+  color: blue;
+  position: absolute;
+  left: 50;
+  top: 50;
 }

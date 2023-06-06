@@ -15,7 +15,7 @@ export default function TacoFinder({ changePage }) {
         taco information <br />
         taco information <br />
       </div>
-      <div className="big-button"> GoogleMaps </div>
+      <div className="big-button"> Take Me To My Taco! </div>
     </div>
   );
 }

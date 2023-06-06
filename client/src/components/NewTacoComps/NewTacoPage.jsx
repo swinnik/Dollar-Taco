@@ -60,6 +60,10 @@ export default function NewTacoPage({ changePage }) {
     bestFlaver: "",
   });
 
+  const selectFilling = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
     <div className="new-taco">
       <div className="input-block">
@@ -81,19 +85,22 @@ export default function NewTacoPage({ changePage }) {
           value={tacoDetails.latitude}
           onChange={(e) => handleInputChange(e)}
         />
-        <input
-          placeholder="best taco flavor?"
-          name="bestFlaver"
-          value={tacoDetails.bestFlaver}
-          onChange={(e) => handleInputChange(e)}
-        />
+        <select onChange={(e) => selectFilling(e)}>
+          <option value="Best Taco Flavor">Best Taco Filling</option>
+          <option value="Carnitas">Carnitas</option>
+          <option value="Carne Asada">Carnitas</option>
+          <option value="Al Pastor">Al Pastor</option>
+          <option value="Chorizo">Chorizo</option>
+          <option value="Chicken">Chicken</option>
+          <option value="Suadero">Suadero</option>
+        </select>
       </div>
       <div
         className="big-button"
         name="front-page"
         onClick={(e) => submitTaco(e)}
       >
-        Add the Spot!
+        Add This Spot!
       </div>
       <div
         className="big-button"
