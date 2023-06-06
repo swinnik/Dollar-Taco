@@ -3,7 +3,9 @@ const path = require("path");
 const express = require("express");
 const compression = require("compression");
 const morgan = require("morgan");
-const router = require("./routes");
+// const router = require("./routes");
+const vendors = require("./routes/vendors.js");
+
 const client = require("./db/db");
 
 const app = express();
@@ -15,10 +17,16 @@ app.use(express.json());
 app.use(compression());
 
 // Routes
-app.use("/products", router.products);
-app.use("/qa", router.qa);
-app.use("/venders", router.venders);
-// app.use('/cart', router.cart);
+// app.use("/products", router.products);
+// app.use("/qa", router.qa);
+app.use(
+  "/vendors",
+  (req, res, next) => {
+    console.log("SERVER receiving request to /vendors");
+    next();
+  },
+  vendors
+); // app.use('/cart', router.cart);
 
 // Serving static files
 app.use(express.static(path.join(__dirname, "../client/dist")));

@@ -1,1 +1,1 @@
-exports.review = require('./seanModels')
+exports.vendors = require("./seanModels");

@@ -3,8 +3,8 @@ const models = require("../models");
 
 module.exports = {
   get: (req, res) => {
-    models.review
-      .getAllReviews(req, res)
+    models.vendors
+      .getAllVendors(req, res)
       .then((dbRes) => {
         res.send(dbRes.rows);
       })
@@ -14,14 +14,13 @@ module.exports = {
   },
 
   post: (req, res) => {
-    console.log("asdfasdf;jlasdodf");
-
     try {
       console.log("Inside the POST controller"); // Add console.log statement
       const { name, longitude, latitude, bestFlaver } = req.body;
 
       // Perform necessary operations, such as saving the data to the database
-      const result = models.venders
+      const result = models.vendors;
+      models.vendors
         .createVender({
           name,
           longitude,
@@ -29,7 +28,7 @@ module.exports = {
           bestFlaver,
         })
         .then(() => console.log("Data saved successfully:", result))
-        .then(() => res.sen(200))
+        .then(() => res.send(200))
         .then(() => {
           return longitude;
         });

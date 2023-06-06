@@ -20,7 +20,7 @@ export default function NewTacoPage({
     console.log(tacoDetails);
     axios
       .post(
-        "/venders",
+        "/vendors",
         { ...tacoDetails },
         {
           headers: {

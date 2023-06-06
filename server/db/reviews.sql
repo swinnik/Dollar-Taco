@@ -1,11 +1,11 @@
-DROP DATABASE IF EXISTS venders; -- maybe move these to another file
-CREATE DATABASE venders;
-\c venders;
+DROP DATABASE IF EXISTS dollartaco; -- maybe move these to another file
+CREATE DATABASE dollartaco;
+\c dollartaco;
 
 
-CREATE TABLE vender (
-  name VARCHAR(50) NOT NULL,
-  lattitude INTEGER NOT NULL,
-  longitude INTEGER NOT NULL,
-  bestFilling VARCHAR(50)
+CREATE TABLE venders (
+  name VARCHAR(100),
+  latitude INTEGER,
+  longitude INTEGER,
+  bestFilling VARCHAR(100)
 );
