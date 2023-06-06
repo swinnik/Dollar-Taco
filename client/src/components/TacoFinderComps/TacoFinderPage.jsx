@@ -35,7 +35,7 @@ export default function TacoFinder({
         calculateDistance(a, latitude, longitude) -
         calculateDistance(b, latitude, longitude)
     );
-    sortedTacos = sortedTacos.slice(0, 6);
+    sortedTacos = sortedTacos.slice(0, 5);
     setSortedTacos(sortedTacos);
     setClosestTaco(sortedTacos[0]);
   };

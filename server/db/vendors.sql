@@ -7,5 +7,6 @@ CREATE TABLE vendors (
   name VARCHAR(100),
   latitude NUMERIC,
   longitude NUMERIC,
-  bestFilling VARCHAR(100)
+  bestFilling VARCHAR(100),
+  price numeric(4,2)
 );
