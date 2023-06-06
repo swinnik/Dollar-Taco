@@ -6,11 +6,12 @@ export default function TacoFinder({
   changePage,
   closestTacos,
   setClosestTacos,
+  latLong,
 }) {
   const [sortedTacos, setSortedTacos] = useState([]);
   const [closestTaco, setClosestTaco] = useState(null);
-  let latitude = 34.1774627;
-  let longitude = -118.37719;
+  console.log(latLong);
+  let { latitude, longitude } = latLong;
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -29,17 +30,18 @@ export default function TacoFinder({
     longitude = position.coords.longitude;
     console.log("success", latitude, longitude);
 
-    const sortedTacos = closestTacos.sort(
+    let sortedTacos = closestTacos.sort(
       (a, b) =>
         calculateDistance(a, latitude, longitude) -
         calculateDistance(b, latitude, longitude)
     );
+    sortedTacos = sortedTacos.slice(0, 6);
     setSortedTacos(sortedTacos);
     setClosestTaco(sortedTacos[0]);
   };
 
   const notThisTaco = (e) => {
-    if (sortedTacos.length === 1) {
+    if (sortedTacos.length <= 1) {
       changePage(e);
       axios.get("/vendors").then((response) => {
         setClosestTacos(Object.values(response.data).reverse());
