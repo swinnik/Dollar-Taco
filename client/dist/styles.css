@@ -235,17 +235,37 @@ root {
   width: 75%;
   /* border: solid; */
 }
-
+/* 
 input {
   height: 15px;
   padding-top: 5px;
   margin-top: 5px;
-  /* background-color: blue; */
+} */
+
+input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 0 2px black;
 }
 
-option {
-  color: blue;
-  position: absolute;
-  left: 50;
-  top: 50;
+select {
+  width: 80%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  position: relative;
+}
+
+/* Example styling for option list */
+select option {
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Example styling for selected option */
+select option:checked {
+  background-color: #ddd;
+  color: #555;
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import BestFilling from "./BestFilling";
 
 const { useState, useEffect } = React;
 
@@ -85,16 +86,8 @@ export default function NewTacoPage({ changePage }) {
           value={tacoDetails.latitude}
           onChange={(e) => handleInputChange(e)}
         />
-        <select onChange={(e) => selectFilling(e)}>
-          <option value="Best Taco Flavor">Best Taco Filling</option>
-          <option value="Carnitas">Carnitas</option>
-          <option value="Carne Asada">Carnitas</option>
-          <option value="Al Pastor">Al Pastor</option>
-          <option value="Chorizo">Chorizo</option>
-          <option value="Chicken">Chicken</option>
-          <option value="Suadero">Suadero</option>
-        </select>
       </div>
+      <BestFilling />
       <div
         className="big-button"
         name="front-page"
