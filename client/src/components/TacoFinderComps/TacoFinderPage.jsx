@@ -41,7 +41,7 @@ export default function TacoFinder({
   };
 
   const notThisTaco = (e) => {
-    if (sortedTacos.length <= 1) {
+    if (sortedTacos.length <= 0) {
       changePage(e);
       axios.get("/vendors").then((response) => {
         setClosestTacos(Object.values(response.data).reverse());
@@ -68,13 +68,15 @@ export default function TacoFinder({
       </div>
       {closestTaco ? (
         <div>
-          {closestTaco.name} is only about{" "}
+          {closestTaco.name} is about{" "}
           {Math.round(calculateDistance(closestTaco, latitude, longitude), 2)}{" "}
-          miles away!
+          miles away
+          <br />
+          and only {closestTaco.price} dollars!
           <br />
           Make sure to check out their {closestTaco.bestfilling}!!!
           <br />
-          lat: {closestTaco.latitude} long: {closestTaco.longitude}
+          {/* lat: {closestTaco.latitude} long: {closestTaco.longitude} */}
         </div>
       ) : (
         <div>Finding Closest Taco...</div>

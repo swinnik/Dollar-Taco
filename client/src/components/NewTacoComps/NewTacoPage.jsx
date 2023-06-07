@@ -12,7 +12,7 @@ export default function NewTacoPage({
   setTacoDetails,
   setClosestTacos,
 }) {
-  const { latitude, longitude } = tacoDetails;
+  const { latitude, longitude, price } = tacoDetails;
   const [bestFilling, setBestFilling] = useState("Best Filling");
   const [displayModal, setDisplayModal] = useState(false);
 
@@ -80,6 +80,12 @@ export default function NewTacoPage({
           //   placeholder="longitude"
           name="longitude"
           value={longitude}
+          onChange={(e) => clickFilling(e)}
+        />
+        <input
+          placeholder="Price"
+          name="price"
+          value={price}
           onChange={(e) => clickFilling(e)}
         />
         <input
